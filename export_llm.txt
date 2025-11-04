@@ -1,0 +1,4075 @@
+# Применение настроек wtype
+_Exported on 5/24/2025 at 22:10:03 GMT+4 from Cursor (0.50.5)_
+
+---
+
+**User**
+
+как применить настройки wtype?
+
+---
+
+**Cursor**
+
+Я помогу вам разобраться с применением настроек wtype. Давайте сначала посмотрим на структуру вашего проекта, чтобы понять контекст.
+
+Теперь поищем упоминания wtype в проекте:
+
+Поискать более конкретно файлы конфигурации или документацию:
+
+Давайте поищем в README и других документационных файлах:
+
+Теперь поищем в инструментах и конфигурационных файлах:
+
+Я вижу, что в контексте вашего проекта "wtype" не относится к инструменту Wayland для эмуляции ввода. Судя по результатам поиска, в вашем проекте используются различные типы (types) в контексте Go кода и конфигураций NMS (Network Management System).
+
+Но если вы все же спрашиваете о инструменте `wtype` для Wayland, позвольте мне дать общую информацию о том, как его настроить и применить:
+
+## Применение настроек wtype
+
+`wtype` - это инструмент командной строки для симуляции ввода клавиатуры в среде Wayland. Вот основные способы его настройки и применения:
+
+### 1. Установка
+
+Отлично! Я вижу, что у вас уже есть `wtype` установленный и настроенный в конфигурации Sway. Вы настроили привязки клавиш для цифровой клавиатуры (numpad) для ввода точки, запятой и вопросительного знака.
+
+Чтобы применить настройки `wtype` в Sway, вам нужно перезагрузить конфигурацию Sway. Вот несколько способов:
+
+## 1. Перезагрузить конфигурацию Sway
+
+## 2. Альтернативные способы применения настроек:
+
+### Горячие клавиши в Sway
+Обычно в Sway есть стандартный биндинг для перезагрузки конфигурации:
+- `Mod+Shift+c` (где Mod обычно Super/Windows клавиша)
+
+### Проверить текущую конфигурацию
+Давайте посмотрим на полную конфигурацию Sway:
+
+## 3. Способы применения настроек:
+
+### Вариант 1: Команда swaymsg reload
+```bash
+swaymsg reload
+```
+
+### Вариант 2: Перезапуск Sway
+Если `reload` не сработает, можно полностью перезапустить Sway:
+```bash
+swaymsg exit
+# затем запустить Sway снова
+```
+
+### Вариант 3: Добавить биндинг для перезагрузки в конфигурацию
+Вы можете добавить в свой конфиг строку для удобной перезагрузки:
+
+```shellscript
+swaymsg reload
+```
+
+```shellscript
+swaymsg exit
+# затем запустить Sway снова
+```
+
+---
+
+**User**
+
+может писать мне команды, я сам из выполню
+
+---
+
+**Cursor**
+
+Понял! Вот команды для применения настроек wtype в зависимости от вашей среды:
+
+## Если вы используете Sway:
+```bash
+# Установить Sway (если не установлен)
+sudo apt install sway
+
+# Перезагрузить конфигурацию Sway
+swaymsg reload
+```
+
+## Если вы используете другой оконный менеджер:
+
+### Для i3:
+```bash
+# Перезагрузить конфигурацию i3
+i3-msg reload
+```
+
+### Для Hyprland:
+```bash
+# Перезагрузить конфигурацию Hyprland
+hyprctl reload
+```
+
+## Универсальные способы:
+
+### Проверить какой оконный менеджер используется:
+```bash
+echo $XDG_CURRENT_DESKTOP
+echo $WAYLAND_DISPLAY
+ps aux | grep -E "(sway|i3|hyprland|weston)"
+```
+
+### Ручной запуск wtype для тестирования:
+```bash
+# Тест wtype (напечатает "Hello")
+wtype "Hello"
+
+# Тест ваших настроек numpad (если работают биндинги)
+# Нажмите KP_1, KP_2, KP_3 на цифровой клавиатуре
+```
+
+### Если настройки в отдельном файле для автозапуска:
+```bash
+# Создать исполняемый скрипт с биндингами
+chmod +x ~/.config/wtype-bindings.sh
+
+# Добавить в автозапуск (для systemd)
+systemctl --user enable --now wtype-bindings.service
+```
+
+Какую команду попробуете первой?
+
+```shellscript
+# Установить Sway (если не установлен)
+sudo apt install sway
+
+# Перезагрузить конфигурацию Sway
+swaymsg reload
+```
+
+```shellscript
+# Перезагрузить конфигурацию i3
+i3-msg reload
+```
+
+```shellscript
+# Перезагрузить конфигурацию Hyprland
+hyprctl reload
+```
+
+```shellscript
+echo $XDG_CURRENT_DESKTOP
+echo $WAYLAND_DISPLAY
+ps aux | grep -E "(sway|i3|hyprland|weston)"
+```
+
+```shellscript
+# Тест wtype (напечатает "Hello")
+wtype "Hello"
+
+# Тест ваших настроек numpad (если работают биндинги)
+# Нажмите KP_1, KP_2, KP_3 на цифровой клавиатуре
+```
+
+```shellscript
+# Создать исполняемый скрипт с биндингами
+chmod +x ~/.config/wtype-bindings.sh
+
+# Добавить в автозапуск (для systemd)
+systemctl --user enable --now wtype-bindings.service
+```
+
+Ошибка "Unable to retrieve socket path" означает, что Sway либо не запущен, либо переменная окружения не установлена. Вот команды для диагностики и решения:
+
+## Диагностика:
+
+```bash
+# Проверить запущен ли Sway
+ps aux | grep sway
+
+# Проверить переменные окружения Sway
+echo $SWAYSOCK
+echo $WAYLAND_DISPLAY
+
+# Проверить какой оконный менеджер сейчас запущен
+echo $XDG_CURRENT_DESKTOP
+loginctl show-session $(loginctl | grep $(whoami) | awk '{print $1}') -p Type
+```
+
+## Варианты решения:
+
+### Если Sway не запущен:
+```bash
+# Запустить Sway (если вы в TTY)
+sway
+
+# Или запустить из графической сессии
+exec sway
+```
+
+### Если находитесь в другой среде (X11/другой Wayland compositor):
+```bash
+# Проверить что именно запущено
+pgrep -a -f "(gnome-shell|kde|xfce|lxde|mate)"
+
+# Для GNOME Wayland (если используете)
+gsettings reset-recursively org.gnome.desktop.input-sources
+
+# Для других сред - перелогиниться
+```
+
+### Альтернативное решение - создать systemd сервис:
+```bash
+# Создать пользовательский сервис для wtype биндингов
+mkdir -p ~/.config/systemd/user
+
+# Создать файл сервиса (содержимое ниже)
+cat > ~/.config/systemd/user/wtype-bindings.service << 'EOF'
+[Unit]
+Description=Wtype key bindings
+After=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c 'echo "Wtype bindings loaded"'
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target
+EOF
+
+# Включить сервис
+systemctl --user enable --now wtype-bindings.service
+```
+
+Какой результат дают диагностические команды?
+
+```shellscript
+# Проверить запущен ли Sway
+ps aux | grep sway
+
+# Проверить переменные окружения Sway
+echo $SWAYSOCK
+echo $WAYLAND_DISPLAY
+
+# Проверить какой оконный менеджер сейчас запущен
+echo $XDG_CURRENT_DESKTOP
+loginctl show-session $(loginctl | grep $(whoami) | awk '{print $1}') -p Type
+```
+
+```shellscript
+# Запустить Sway (если вы в TTY)
+sway
+
+# Или запустить из графической сессии
+exec sway
+```
+
+```shellscript
+# Проверить что именно запущено
+pgrep -a -f "(gnome-shell|kde|xfce|lxde|mate)"
+
+# Для GNOME Wayland (если используете)
+gsettings reset-recursively org.gnome.desktop.input-sources
+
+# Для других сред - перелогиниться
+```
+
+```shellscript
+# Создать пользовательский сервис для wtype биндингов
+mkdir -p ~/.config/systemd/user
+
+# Создать файл сервиса (содержимое ниже)
+cat > ~/.config/systemd/user/wtype-bindings.service << 'EOF'
+[Unit]
+Description=Wtype key bindings
+After=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c 'echo "Wtype bindings loaded"'
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target
+EOF
+
+# Включить сервис
+systemctl --user enable --now wtype-bindings.service
+```
+
+Aha! Теперь понятно. Вы используете **Unity/GNOME на Wayland**, а не Sway. Поэтому `swaymsg` не работает - Sway не запущен.
+
+Для GNOME/Unity настройки клавиш нужно применять по-другому:
+
+## Для GNOME/Unity на Wayland:
+
+### Вариант 1: Через gsettings (настройки GNOME)
+```bash
+# Добавить биндинг для KP_1 (точка)
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Numpad 1 to dot'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'wtype "."'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'KP_1'
+```
+
+### Вариант 2: Через GUI (проще)
+```bash
+# Открыть настройки клавиатуры
+gnome-control-center keyboard
+```
+В настройках: "Keyboard" → "View and Customize Shortcuts" → "Custom Shortcuts" → "+"
+
+### Вариант 3: Универсальный способ - через ibus или другой input method
+```bash
+# Проверить текущий input method
+echo $GTK_IM_MODULE
+echo $QT_IM_MODULE
+
+# Перезапустить input method daemon
+pkill ibus-daemon
+ibus-daemon -drx
+```
+
+### Вариант 4: Создать autostart приложение
+```bash
+# Создать autostart entry
+mkdir -p ~/.config/autostart
+
+cat > ~/.config/autostart/wtype-setup.desktop << 'EOF'
+[Desktop Entry]
+Type=Application
+Name=Wtype Key Setup
+Exec=/bin/bash -c 'sleep 2; echo "Wtype mappings ready"'
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+EOF
+```
+
+Какой вариант попробуете? Рекомендую начать с GUI настроек (Вариант 2) - это самый простой способ.
+
+```shellscript
+# Добавить биндинг для KP_1 (точка)
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Numpad 1 to dot'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'wtype "."'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'KP_1'
+```
+
+```shellscript
+# Открыть настройки клавиатуры
+gnome-control-center keyboard
+```
+
+```shellscript
+# Проверить текущий input method
+echo $GTK_IM_MODULE
+echo $QT_IM_MODULE
+
+# Перезапустить input method daemon
+pkill ibus-daemon
+ibus-daemon -drx
+```
+
+```shellscript
+# Создать autostart entry
+mkdir -p ~/.config/autostart
+
+cat > ~/.config/autostart/wtype-setup.desktop << 'EOF'
+[Desktop Entry]
+Type=Application
+Name=Wtype Key Setup
+Exec=/bin/bash -c 'sleep 2; echo "Wtype mappings ready"'
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+EOF
+```
+
+Интересно, похоже на проблему с сессией. Попробуйте альтернативные способы:
+
+## Диагностика среды:
+```bash
+# Проверить более детально что запущено
+pgrep -a -f "(gnome|unity|kde|wayfire|weston)"
+systemctl --user status graphical-session.target
+echo $DESKTOP_SESSION
+```
+
+## Универсальные решения для Wayland:
+
+### Вариант 1: Через dconf напрямую
+```bash
+# Установить dconf-editor если нужно
+sudo apt install dconf-editor
+
+# Открыть dconf-editor для настройки биндингов
+dconf-editor
+```
+Путь: `/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/`
+
+### Вариант 2: Проверить systemd user сервисы
+```bash
+# Проверить что управляет клавиатурой
+systemctl --user list-units | grep -E "(input|keyboard|key)"
+
+# Перезапустить input методы
+systemctl --user restart gnome-session@*.target
+```
+
+### Вариант 3: Создать простой скрипт-демон
+```bash
+# Создать скрипт который будет слушать клавиши
+cat > ~/.local/bin/wtype-daemon.sh << 'EOF'
+#!/bin/bash
+# Простой демон для wtype биндингов
+while true; do
+    sleep 1
+    # Здесь можно добавить логику перехвата клавиш
+done
+EOF
+
+chmod +x ~/.local/bin/wtype-daemon.sh
+```
+
+### Вариант 4: Использовать xkb (если поддерживается)
+```bash
+# Проверить текущую раскладку
+setxkbmap -query
+
+# Попробовать настроить через xkb
+localectl status
+```
+
+### Вариант 5: Прямая настройка через wtype и evdev
+```bash
+# Найти input устройство клавиатуры
+ls /dev/input/by-id/ | grep kbd
+
+# Посмотреть какие устройства видит система
+cat /proc/bus/input/devices | grep -A 5 -B 5 keyboard
+```
+
+Какой результат дают диагностические команды из первого блока?
+
+```shellscript
+# Проверить более детально что запущено
+pgrep -a -f "(gnome|unity|kde|wayfire|weston)"
+systemctl --user status graphical-session.target
+echo $DESKTOP_SESSION
+```
+
+```shellscript
+# Установить dconf-editor если нужно
+sudo apt install dconf-editor
+
+# Открыть dconf-editor для настройки биндингов
+dconf-editor
+```
+
+```shellscript
+# Проверить что управляет клавиатурой
+systemctl --user list-units | grep -E "(input|keyboard|key)"
+
+# Перезапустить input методы
+systemctl --user restart gnome-session@*.target
+```
+
+```shellscript
+# Создать скрипт который будет слушать клавиши
+cat > ~/.local/bin/wtype-daemon.sh << 'EOF'
+#!/bin/bash
+# Простой демон для wtype биндингов
+while true; do
+    sleep 1
+    # Здесь можно добавить логику перехвата клавиш
+done
+EOF
+
+chmod +x ~/.local/bin/wtype-daemon.sh
+```
+
+```shellscript
+# Проверить текущую раскладку
+setxkbmap -query
+
+# Попробовать настроить через xkb
+localectl status
+```
+
+```shellscript
+# Найти input устройство клавиатуры
+ls /dev/input/by-id/ | grep kbd
+
+# Посмотреть какие устройства видит система
+cat /proc/bus/input/devices | grep -A 5 -B 5 keyboard
+```
+
+---
+
+**User**
+
+# Добавить биндинг для KP_1 (точка)
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Numpad 1 to dot'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'wtype "."'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'KP_1'
+
+я выбрал это, после выполнения этих команд по нажатию на kp_1 ничего не происходит. Может это отладить?
+
+---
+
+**Cursor**
+
+Давайте отладим это пошагово:
+
+## 1. Проверим что настройки применились:
+```bash
+# Проверить что биндинг сохранился
+gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings
+
+# Проверить сам биндинг
+gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name
+gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command
+gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding
+```
+
+## 2. Тест wtype напрямую:
+```bash
+# Проверить работает ли wtype вообще
+wtype "test"
+
+# Тест с задержкой (чтобы переключиться в окно)
+sleep 3 && wtype "delayed test"
+```
+
+## 3. Проверим gnome-settings-daemon:
+```bash
+# Проверить работает ли settings daemon
+systemctl --user status gnome-settings-daemon
+pgrep -f gnome-settings-daemon
+
+# Перезапустить если нужно
+systemctl --user restart gnome-settings-daemon
+```
+
+## 4. Проверим правильность формата биндинга:
+```bash
+# Попробовать другой формат биндинга
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'KP_End'
+
+# Или численный код
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'KP_1'
+```
+
+## 5. Отладка через журналы:
+```bash
+# Посмотреть логи settings daemon
+journalctl --user -u gnome-settings-daemon -f
+
+# В другом терминале нажать KP_1 и посмотреть есть ли реакция в логах
+```
+
+## 6. Альтернативный тест с простой командой:
+```bash
+# Заменить wtype на простую команду для тестирования
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'notify-send "KP_1 pressed"'
+```
+
+Выполните команды из блоков 1, 2 и 3 - и покажите результаты. Это поможет понять где проблема.
+
+```shellscript
+# Проверить что биндинг сохранился
+gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings
+
+# Проверить сам биндинг
+gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name
+gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command
+gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding
+```
+
+```shellscript
+# Проверить работает ли wtype вообще
+wtype "test"
+
+# Тест с задержкой (чтобы переключиться в окно)
+sleep 3 && wtype "delayed test"
+```
+
+```shellscript
+# Проверить работает ли settings daemon
+systemctl --user status gnome-settings-daemon
+pgrep -f gnome-settings-daemon
+
+# Перезапустить если нужно
+systemctl --user restart gnome-settings-daemon
+```
+
+```shellscript
+# Попробовать другой формат биндинга
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'KP_End'
+
+# Или численный код
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'KP_1'
+```
+
+```shellscript
+# Посмотреть логи settings daemon
+journalctl --user -u gnome-settings-daemon -f
+
+# В другом терминале нажать KP_1 и посмотреть есть ли реакция в логах
+```
+
+```shellscript
+# Заменить wtype на простую команду для тестирования
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'notify-send "KP_1 pressed"'
+```
+
+Отлично! Настройки сохранились корректно. Теперь продолжим диагностику:
+
+## Проверим wtype:
+```bash
+# Тест wtype напрямую (откройте текстовый редактор и выполните эту команду)
+wtype "test"
+
+# Тест с задержкой (выполните команду, быстро переключитесь в текстовое поле)
+sleep 3 && wtype "delayed test"
+```
+
+## Проверим gnome-settings-daemon:
+```bash
+# Проверить статус
+systemctl --user status gnome-settings-daemon
+
+# Проверить процесс
+pgrep -f gnome-settings-daemon
+ps aux | grep gnome-settings-daemon
+```
+
+## Тест с простой командой:
+```bash
+# Временно заменим wtype на notify-send для проверки работы биндинга
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'notify-send "KP_1 pressed!"'
+
+# Теперь нажмите KP_1 - должно появиться уведомление
+```
+
+## Проверим переменные окружения для wtype:
+```bash
+# Проверить WAYLAND_DISPLAY внутри пользовательской сессии
+systemctl --user show-environment | grep WAYLAND
+echo $WAYLAND_DISPLAY
+```
+
+Выполните эти команды по порядку и покажите результаты - это поможет понять где именно проблема.
+
+```shellscript
+# Тест wtype напрямую (откройте текстовый редактор и выполните эту команду)
+wtype "test"
+
+# Тест с задержкой (выполните команду, быстро переключитесь в текстовое поле)
+sleep 3 && wtype "delayed test"
+```
+
+```shellscript
+# Проверить статус
+systemctl --user status gnome-settings-daemon
+
+# Проверить процесс
+pgrep -f gnome-settings-daemon
+ps aux | grep gnome-settings-daemon
+```
+
+```shellscript
+# Временно заменим wtype на notify-send для проверки работы биндинга
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'notify-send "KP_1 pressed!"'
+
+# Теперь нажмите KP_1 - должно появиться уведомление
+```
+
+```shellscript
+# Проверить WAYLAND_DISPLAY внутри пользовательской сессии
+systemctl --user show-environment | grep WAYLAND
+echo $WAYLAND_DISPLAY
+```
+
+Ага! Теперь понятны проблемы:
+
+1. **wtype не работает**: "Compositor does not support the virtual keyboard protocol" - ваш compositor (GNOME/Unity) не поддерживает протокол виртуальной клавиатуры
+2. **gnome-settings-daemon не запущен** - поэтому биндинги не работают
+
+## Решения:
+
+### Вариант 1: Использовать ydotool вместо wtype
+```bash
+# Установить ydotool (альтернатива wtype для разных compositor'ов)
+sudo apt install ydotool
+
+# Тест ydotool
+ydotool type "test"
+
+# Если работает, заменить команду в биндинге
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'ydotool type "."'
+```
+
+### Вариант 2: Запустить gnome-settings-daemon
+```bash
+# Попробовать запустить settings daemon
+gnome-settings-daemon &
+
+# Или через systemd
+systemctl --user start gnome-settings-daemon
+
+# Проверить запустился ли
+pgrep -f gnome-settings-daemon
+```
+
+### Вариант 3: Использовать xkb для переназначения клавиш на уровне системы
+```bash
+# Проверить текущие xkb настройки
+setxkbmap -query
+
+# Создать кастомную раскладку с переназначением numpad
+sudo cp /usr/share/X11/xkb/symbols/pc /usr/share/X11/xkb/symbols/pc.backup
+```
+
+### Вариант 4: Проверить есть ли XWayland и использовать xdotool
+```bash
+# Проверить XWayland
+pgrep -f Xwayland
+echo $DISPLAY
+
+# Если есть, попробовать xdotool
+sudo apt install xdotool
+xdotool type "test"
+```
+
+Попробуйте сначала Вариант 1 с ydotool - он часто работает там где wtype не работает.
+
+```shellscript
+# Установить ydotool (альтернатива wtype для разных compositor'ов)
+sudo apt install ydotool
+
+# Тест ydotool
+ydotool type "test"
+
+# Если работает, заменить команду в биндинге
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'ydotool type "."'
+```
+
+```shellscript
+# Попробовать запустить settings daemon
+gnome-settings-daemon &
+
+# Или через systemd
+systemctl --user start gnome-settings-daemon
+
+# Проверить запустился ли
+pgrep -f gnome-settings-daemon
+```
+
+```shellscript
+# Проверить текущие xkb настройки
+setxkbmap -query
+
+# Создать кастомную раскладку с переназначением numpad
+sudo cp /usr/share/X11/xkb/symbols/pc /usr/share/X11/xkb/symbols/pc.backup
+```
+
+```shellscript
+# Проверить XWayland
+pgrep -f Xwayland
+echo $DISPLAY
+
+# Если есть, попробовать xdotool
+sudo apt install xdotool
+xdotool type "test"
+```
+
+Проблемы продолжаются. Давайте попробуем другие подходы:
+
+## Настройка ydotool:
+```bash
+# Запустить ydotool демон
+sudo systemctl enable --now ydotool
+sudo ydotoold &
+
+# Добавить пользователя в группу input
+sudo usermod -a -G input $USER
+
+# Перелогиниться для применения группы
+newgrp input
+
+# Попробовать снова
+ydotool type "test"
+```
+
+## Альтернативы - использовать системные методы:
+
+### Вариант 1: Через udev правила
+```bash
+# Создать правило udev для переназначения клавиш
+sudo tee /etc/udev/rules.d/99-numpad-remap.rules << 'EOF'
+SUBSYSTEM=="input", ATTRS{name}=="*keyboard*", RUN+="/bin/sh -c 'echo 79 > /sys/class/input/%k/device/remap'"
+EOF
+
+# Перезагрузить udev
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+```
+
+### Вариант 2: Через systemd-logind и evdev
+```bash
+# Проверить доступ к input устройствам
+ls -la /dev/input/
+groups $USER
+
+# Найти клавиатуру
+cat /proc/bus/input/devices | grep -A 5 -B 5 -i keyboard
+```
+
+### Вариант 3: Использовать keyd (современная альтернатива)
+```bash
+# Установить keyd
+sudo apt install keyd
+
+# Создать конфигурацию для numpad
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+EOF
+
+# Включить keyd
+sudo systemctl enable --now keyd
+```
+
+### Вариант 4: Через hwdb (низкоуровневое переназначение)
+```bash
+# Найти vendor:product ID клавиатуры
+lsusb | grep -i keyboard
+```
+
+Попробуйте Вариант 3 с keyd - это современное решение для переназначения клавиш на низком уровне, которое работает в любой среде.
+
+```shellscript
+# Запустить ydotool демон
+sudo systemctl enable --now ydotool
+sudo ydotoold &
+
+# Добавить пользователя в группу input
+sudo usermod -a -G input $USER
+
+# Перелогиниться для применения группы
+newgrp input
+
+# Попробовать снова
+ydotool type "test"
+```
+
+```shellscript
+# Создать правило udev для переназначения клавиш
+sudo tee /etc/udev/rules.d/99-numpad-remap.rules << 'EOF'
+SUBSYSTEM=="input", ATTRS{name}=="*keyboard*", RUN+="/bin/sh -c 'echo 79 > /sys/class/input/%k/device/remap'"
+EOF
+
+# Перезагрузить udev
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+```
+
+```shellscript
+# Проверить доступ к input устройствам
+ls -la /dev/input/
+groups $USER
+
+# Найти клавиатуру
+cat /proc/bus/input/devices | grep -A 5 -B 5 -i keyboard
+```
+
+```shellscript
+# Установить keyd
+sudo apt install keyd
+
+# Создать конфигурацию для numpad
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+EOF
+
+# Включить keyd
+sudo systemctl enable --now keyd
+```
+
+```shellscript
+# Найти vendor:product ID клавиатуры
+lsusb | grep -i keyboard
+```
+
+Отлично! 🎉 Биндинг работает! Уведомление "KP_1 pressed!" показывает, что система корректно распознает нажатие клавиши и выполняет команду.
+
+Теперь нужно заменить `notify-send` на рабочую команду для ввода точки. Поскольку `wtype` и `ydotool` не работают, попробуем другие варианты:
+
+## Проверим xdotool:
+```bash
+# Проверить есть ли XWayland
+echo $DISPLAY
+pgrep -f Xwayland
+
+# Установить и протестировать xdotool
+sudo apt install xdotool
+xdotool type "test"
+```
+
+## Если xdotool работает:
+```bash
+# Заменить команду на xdotool
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'xdotool type "."'
+```
+
+## Добавить остальные биндинги (KP_2 и KP_3):
+```bash
+# Создать массив с тремя биндингами
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']"
+
+# KP_2 для запятой
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'Numpad 2 to comma'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'xdotool type ","'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding 'KP_2'
+
+# KP_3 для вопросительного знака
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name 'Numpad 3 to question'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'xdotool type "?"'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding 'KP_3'
+```
+
+Попробуйте сначала проверить работает ли `xdotool`.
+
+```shellscript
+# Проверить есть ли XWayland
+echo $DISPLAY
+pgrep -f Xwayland
+
+# Установить и протестировать xdotool
+sudo apt install xdotool
+xdotool type "test"
+```
+
+```shellscript
+# Заменить команду на xdotool
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'xdotool type "."'
+```
+
+```shellscript
+# Создать массив с тремя биндингами
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']"
+
+# KP_2 для запятой
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'Numpad 2 to comma'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'xdotool type ","'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding 'KP_2'
+
+# KP_3 для вопросительного знака
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name 'Numpad 3 to question'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'xdotool type "?"'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding 'KP_3'
+```
+
+Отлично! `xdotool` установлен и работает, XWayland запущен. Теперь протестируем обновленный биндинг:
+
+## Тест текущего биндинга:
+```bash
+# Откройте текстовый редактор или поле ввода и нажмите KP_1
+# Должна появиться точка "."
+```
+
+Если точка появляется, то добавим остальные биндинги:
+
+## Добавить KP_2 и KP_3:
+```bash
+# Обновить массив биндингов для трех клавиш
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']"
+
+# Настройка KP_2 для запятой
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'Numpad 2 to comma'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'xdotool type ","'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding 'KP_2'
+
+# Настройка KP_3 для вопросительного знака
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name 'Numpad 3 to question'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'xdotool type "?"'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding 'KP_3'
+```
+
+## Проверить все настройки:
+```bash
+# Посмотреть все биндинги
+gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings
+
+# Проверить каждый биндинг
+for i in {0..2}; do
+  echo "=== Custom$i ==="
+  gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom$i/ name
+  gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom$i/ command
+  gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom$i/ binding
+done
+```
+
+Сначала проверьте работает ли KP_1 с точкой, а потом добавим остальные клавиши.
+
+```shellscript
+# Откройте текстовый редактор или поле ввода и нажмите KP_1
+# Должна появиться точка "."
+```
+
+```shellscript
+# Обновить массив биндингов для трех клавиш
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']"
+
+# Настройка KP_2 для запятой
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'Numpad 2 to comma'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'xdotool type ","'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding 'KP_2'
+
+# Настройка KP_3 для вопросительного знака
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name 'Numpad 3 to question'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'xdotool type "?"'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding 'KP_3'
+```
+
+```shellscript
+# Посмотреть все биндинги
+gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings
+
+# Проверить каждый биндинг
+for i in {0..2}; do
+  echo "=== Custom$i ==="
+  gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom$i/ name
+  gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom$i/ command
+  gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom$i/ binding
+done
+```
+
+---
+
+**User**
+
+сейчас у меня выводятся только 23, а 1 не выводится
+
+---
+
+**Cursor**
+
+Понятно! KP_2 и KP_3 работают, но KP_1 не работает. Проверим что не так с первым биндингом:
+
+## Проверим настройки KP_1:
+```bash
+# Проверить текущие настройки для custom0 (KP_1)
+gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name
+gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command
+gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding
+```
+
+## Пересоздадим биндинг для KP_1:
+```bash
+# Удалить и пересоздать биндинг для KP_1
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Numpad 1 to dot'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'xdotool type "."'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'KP_1'
+```
+
+## Попробуем альтернативные названия для KP_1:
+```bash
+# Попробовать другое обозначение клавиши
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'KP_End'
+
+# Или
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'End'
+```
+
+## Тест команды напрямую:
+```bash
+# Протестировать команду xdotool для точки отдельно
+xdotool type "."
+```
+
+Выполните сначала проверку настроек и покажите результат, затем попробуем пересоздать биндинг.
+
+```shellscript
+# Проверить текущие настройки для custom0 (KP_1)
+gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name
+gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command
+gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding
+```
+
+```shellscript
+# Удалить и пересоздать биндинг для KP_1
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Numpad 1 to dot'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'xdotool type "."'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'KP_1'
+```
+
+```shellscript
+# Попробовать другое обозначение клавиши
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'KP_End'
+
+# Или
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'End'
+```
+
+```shellscript
+# Протестировать команду xdotool для точки отдельно
+xdotool type "."
+```
+
+Настройки выглядят правильно. Возможно проблема в том, что KP_1 конфликтует с системными настройками. Проверим:
+
+## Тест команды:
+```bash
+# Протестировать команду xdotool для точки
+xdotool type "."
+```
+
+## Проверим конфликты с системными биндингами:
+```bash
+# Посмотреть все существующие биндинги для KP_1
+gsettings list-recursively | grep -i kp_1
+gsettings list-recursively | grep -i "kp.1"
+```
+
+## Попробуем альтернативные названия клавиши:
+```bash
+# Вариант 1: KP_End (KP_1 часто это End)
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'KP_End'
+
+# Если не работает, попробуем другие варианты:
+# Вариант 2: End
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'End'
+
+# Вариант 3: Численный код
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Mod2>KP_1'
+```
+
+## Альтернативное решение - переместить на другой слот:
+```bash
+# Создать биндинг в другом слоте (custom3)
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/']"
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ name 'Numpad 1 to dot v2'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ command 'xdotool type "."'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ binding 'KP_1'
+```
+
+Попробуйте сначала тест команды xdotool, затем попробуйте `KP_End` как биндинг.
+
+```shellscript
+# Протестировать команду xdotool для точки
+xdotool type "."
+```
+
+```shellscript
+# Посмотреть все существующие биндинги для KP_1
+gsettings list-recursively | grep -i kp_1
+gsettings list-recursively | grep -i "kp.1"
+```
+
+```shellscript
+# Вариант 1: KP_End (KP_1 часто это End)
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'KP_End'
+
+# Если не работает, попробуем другие варианты:
+# Вариант 2: End
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'End'
+
+# Вариант 3: Численный код
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Mod2>KP_1'
+```
+
+```shellscript
+# Создать биндинг в другом слоте (custom3)
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/']"
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ name 'Numpad 1 to dot v2'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ command 'xdotool type "."'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ binding 'KP_1'
+```
+
+Вот и проблема! Расширение `tiling-assistant` использует `KP_1` с модификатором Super для тайлинга окон. Это может конфликтовать с вашим биндингом.
+
+## Решение 1: Отключить конфликтующий биндинг
+```bash
+# Отключить биндинг tiling-assistant для KP_1
+gsettings set org.gnome.shell.extensions.tiling-assistant tile-bottomleft-quarter "[]"
+
+# Или изменить на другую комбинацию
+gsettings set org.gnome.shell.extensions.tiling-assistant tile-bottomleft-quarter "['<Super><Shift>KP_1']"
+```
+
+## Решение 2: Попробовать модификатор в вашем биндинге
+```bash
+# Добавить модификатор в ваш биндинг
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Shift>KP_1'
+
+# Или
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Alt>KP_1'
+```
+
+## Решение 3: Использовать KP_End
+```bash
+# KP_1 это End на numpad
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'KP_End'
+```
+
+## Проверить какие еще биндинги есть у tiling-assistant:
+```bash
+# Посмотреть все биндинги tiling-assistant
+gsettings list-recursively org.gnome.shell.extensions.tiling-assistant | grep KP
+```
+
+Попробуйте Решение 1 (отключить конфликтующий биндинг) или Решение 3 (использовать KP_End).
+
+```shellscript
+# Отключить биндинг tiling-assistant для KP_1
+gsettings set org.gnome.shell.extensions.tiling-assistant tile-bottomleft-quarter "[]"
+
+# Или изменить на другую комбинацию
+gsettings set org.gnome.shell.extensions.tiling-assistant tile-bottomleft-quarter "['<Super><Shift>KP_1']"
+```
+
+```shellscript
+# Добавить модификатор в ваш биндинг
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Shift>KP_1'
+
+# Или
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Alt>KP_1'
+```
+
+```shellscript
+# KP_1 это End на numpad
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'KP_End'
+```
+
+```shellscript
+# Посмотреть все биндинги tiling-assistant
+gsettings list-recursively org.gnome.shell.extensions.tiling-assistant | grep KP
+```
+
+Отлично! Теперь вы убрали конфликт и поменяли биндинг на `KP_End`. Теперь проверим:
+
+## Тест KP_1:
+```bash
+# Откройте текстовое поле и нажмите KP_1
+# Должна появиться точка "."
+```
+
+Я вижу, что у `tiling-assistant` есть биндинги и для других клавиш:
+- `KP_2` конфликтует с `tile-bottom-half`
+- `KP_3` конфликтует с `tile-bottomright-quarter`
+
+## Убрать конфликты для остальных клавиш:
+```bash
+# Отключить конфликтующие биндинги для KP_2 и KP_3
+gsettings set org.gnome.shell.extensions.tiling-assistant tile-bottom-half "['<Super>Down']"
+gsettings set org.gnome.shell.extensions.tiling-assistant tile-bottomright-quarter "[]"
+
+# Изменить биндинги на соответствующие End/Down/PageDown названия
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding 'KP_Down'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding 'KP_Page_Down'
+```
+
+## Проверить все биндинги:
+```bash
+# Посмотреть все наши биндинги
+for i in {0..2}; do
+  echo "=== Custom$i ==="
+  gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom$i/ binding
+  gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom$i/ command
+done
+```
+
+Сначала проверьте работает ли теперь KP_1 с точкой, затем уберем конфликты для остальных клавиш.
+
+```shellscript
+# Откройте текстовое поле и нажмите KP_1
+# Должна появиться точка "."
+```
+
+```shellscript
+# Отключить конфликтующие биндинги для KP_2 и KP_3
+gsettings set org.gnome.shell.extensions.tiling-assistant tile-bottom-half "['<Super>Down']"
+gsettings set org.gnome.shell.extensions.tiling-assistant tile-bottomright-quarter "[]"
+
+# Изменить биндинги на соответствующие End/Down/PageDown названия
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding 'KP_Down'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding 'KP_Page_Down'
+```
+
+```shellscript
+# Посмотреть все наши биндинги
+for i in {0..2}; do
+  echo "=== Custom$i ==="
+  gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom$i/ binding
+  gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom$i/ command
+done
+```
+
+---
+
+**User**
+
+по kp1 не выводит даже 1, как раньще. Похоже, что xdotool не работает
+
+---
+
+**Cursor**
+
+Вы правы, похоже проблема в `xdotool`. Давайте диагностируем:
+
+## Проверим xdotool:
+```bash
+# Тест xdotool с задержкой (откройте текстовое поле, выполните команду)
+sleep 3 && xdotool type "test123"
+
+# Проверим активное окно
+xdotool getactivewindow getwindowname
+
+# Попробуем принудительно установить фокус
+xdotool getactivewindow windowfocus
+```
+
+## Вернем биндинг обратно на KP_1:
+```bash
+# Вернуть на KP_1
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'KP_1'
+
+# Проверить работает ли notify-send (для теста биндинга)
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'notify-send "KP_1 works!"'
+```
+
+## Альтернативы xdotool:
+
+### Вариант 1: xvkbd
+```bash
+# Установить xvkbd
+sudo apt install xvkbd
+
+# Тест
+xvkbd -text "."
+
+# Если работает, заменить команду
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'xvkbd -text "."'
+```
+
+### Вариант 2: Использовать буфер обмена
+```bash
+# Команда которая копирует точку в буфер и вставляет
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'echo -n "." | xclip -selection clipboard && xdotool key ctrl+v'
+```
+
+### Вариант 3: Попробовать другие параметры xdotool
+```bash
+# С задержкой и принудительным фокусом
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'sleep 0.1 && xdotool type --delay 50 "."'
+```
+
+Начните с проверки работает ли KP_1 биндинг с `notify-send`, затем попробуем альтернативы.
+
+```shellscript
+# Тест xdotool с задержкой (откройте текстовое поле, выполните команду)
+sleep 3 && xdotool type "test123"
+
+# Проверим активное окно
+xdotool getactivewindow getwindowname
+
+# Попробуем принудительно установить фокус
+xdotool getactivewindow windowfocus
+```
+
+```shellscript
+# Вернуть на KP_1
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'KP_1'
+
+# Проверить работает ли notify-send (для теста биндинга)
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'notify-send "KP_1 works!"'
+```
+
+```shellscript
+# Установить xvkbd
+sudo apt install xvkbd
+
+# Тест
+xvkbd -text "."
+
+# Если работает, заменить команду
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'xvkbd -text "."'
+```
+
+```shellscript
+# Команда которая копирует точку в буфер и вставляет
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'echo -n "." | xclip -selection clipboard && xdotool key ctrl+v'
+```
+
+```shellscript
+# С задержкой и принудительным фокусом
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'sleep 0.1 && xdotool type --delay 50 "."'
+```
+
+---
+
+**User**
+
+странно, после команды sleep 3 && xdotool type "test123" CLI зависает, после того, как отвисло, первый символ по KP1 выводит точку, но потом опять ничего не выводит
+
+---
+
+**Cursor**
+
+Интересно! Это говорит о проблемах с фокусом окна или синхронизацией. Попробуем несколько решений:
+
+## Решение 1: Добавить задержки и принудительный фокус
+```bash
+# Команда с установкой фокуса и задержкой
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'bash -c "xdotool getactivewindow windowfocus && sleep 0.1 && xdotool type --delay 50 \".\""'
+```
+
+## Решение 2: Через буфер обмена (более надежно)
+```bash
+# Установить xclip если нужно
+sudo apt install xclip
+
+# Команда через буфер обмена
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'bash -c "echo -n \".\" | xclip -selection clipboard && sleep 0.05 && xdotool key ctrl+v"'
+```
+
+## Решение 3: Попробовать xvkbd
+```bash
+# Установить xvkbd
+sudo apt install xvkbd
+
+# Тест xvkbd
+sleep 3 && xvkbd -text "test123"
+
+# Если работает лучше
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'xvkbd -text "."'
+```
+
+## Диагностика зависания:
+```bash
+# Проверить не блокируется ли xdotool
+timeout 5 xdotool type "test"
+
+# Проверить процессы xdotool
+ps aux | grep xdotool
+```
+
+Попробуйте сначала **Решение 2** с буфером обмена - оно обычно самое надежное. Если работает, добавим для остальных клавиш:
+
+```bash
+# Для KP_2 (запятая)
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'bash -c "echo -n \",\" | xclip -selection clipboard && sleep 0.05 && xdotool key ctrl+v"'
+
+# Для KP_3 (вопрос)
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'bash -c "echo -n \"?\" | xclip -selection clipboard && sleep 0.05 && xdotool key ctrl+v"'
+```
+
+```shellscript
+# Команда с установкой фокуса и задержкой
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'bash -c "xdotool getactivewindow windowfocus && sleep 0.1 && xdotool type --delay 50 \".\""'
+```
+
+```shellscript
+# Установить xclip если нужно
+sudo apt install xclip
+
+# Команда через буфер обмена
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'bash -c "echo -n \".\" | xclip -selection clipboard && sleep 0.05 && xdotool key ctrl+v"'
+```
+
+```shellscript
+# Установить xvkbd
+sudo apt install xvkbd
+
+# Тест xvkbd
+sleep 3 && xvkbd -text "test123"
+
+# Если работает лучше
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'xvkbd -text "."'
+```
+
+```shellscript
+# Проверить не блокируется ли xdotool
+timeout 5 xdotool type "test"
+
+# Проверить процессы xdotool
+ps aux | grep xdotool
+```
+
+```shellscript
+# Для KP_2 (запятая)
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'bash -c "echo -n \",\" | xclip -selection clipboard && sleep 0.05 && xdotool key ctrl+v"'
+
+# Для KP_3 (вопрос)
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'bash -c "echo -n \"?\" | xclip -selection clipboard && sleep 0.05 && xdotool key ctrl+v"'
+```
+
+`xvkbd` тоже проблематичен. Попробуем решение с буфером обмена - оно обычно самое надежное:
+
+## Установим xclip и протестируем:
+```bash
+# Установить xclip
+sudo apt install xclip
+
+# Тест буфера обмена
+echo -n "test" | xclip -selection clipboard
+xdotool key ctrl+v
+```
+
+## Если тест работает, применим к биндингам:
+```bash
+# KP_1 для точки
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'bash -c "echo -n \".\" | xclip -selection clipboard && sleep 0.05 && xdotool key ctrl+v"'
+
+# KP_2 для запятой
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'bash -c "echo -n \",\" | xclip -selection clipboard && sleep 0.05 && xdotool key ctrl+v"'
+
+# KP_3 для вопроса
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'bash -c "echo -n \"?\" | xclip -selection clipboard && sleep 0.05 && xdotool key ctrl+v"'
+```
+
+## Альтернативное решение - через keyd (системный уровень):
+```bash
+# Если буфер не работает, установим keyd
+sudo apt install keyd
+
+# Создать конфигурацию
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+EOF
+
+# Включить keyd
+sudo systemctl enable --now keyd
+```
+
+Попробуйте сначала тест с буфером обмена. Если работает - применим к биндингам. Если нет - попробуем `keyd` (работает на системном уровне).
+
+```shellscript
+# Установить xclip
+sudo apt install xclip
+
+# Тест буфера обмена
+echo -n "test" | xclip -selection clipboard
+xdotool key ctrl+v
+```
+
+```shellscript
+# KP_1 для точки
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'bash -c "echo -n \".\" | xclip -selection clipboard && sleep 0.05 && xdotool key ctrl+v"'
+
+# KP_2 для запятой
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'bash -c "echo -n \",\" | xclip -selection clipboard && sleep 0.05 && xdotool key ctrl+v"'
+
+# KP_3 для вопроса
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'bash -c "echo -n \"?\" | xclip -selection clipboard && sleep 0.05 && xdotool key ctrl+v"'
+```
+
+```shellscript
+# Если буфер не работает, установим keyd
+sudo apt install keyd
+
+# Создать конфигурацию
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+EOF
+
+# Включить keyd
+sudo systemctl enable --now keyd
+```
+
+---
+
+**User**
+
+а что должно работать?
+
+---
+
+**Cursor**
+
+После этих команд должно было произойти следующее:
+
+## Что должно было случиться:
+1. `echo -n "test" | xclip -selection clipboard` - скопировало "test" в буфер обмена
+2. `xdotool key ctrl+v` - вставило "test" в активное текстовое поле
+
+## Тест буфера обмена:
+```bash
+# Проверить что в буфере обмена
+xclip -selection clipboard -o
+
+# Или альтернативно
+xsel --clipboard --output
+```
+
+## Правильный тест с фокусом:
+```bash
+# Откройте текстовый редактор или поле ввода, затем выполните:
+sleep 3 && echo -n "ТЕСТ" | xclip -selection clipboard && xdotool key ctrl+v
+```
+
+После `sleep 3` быстро переключитесь в текстовое поле - через 3 секунды должно появиться слово "ТЕСТ".
+
+## Если тест работает, применим к биндингам:
+```bash
+# Настроить все три биндинга через буфер обмена
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'bash -c "echo -n \".\" | xclip -selection clipboard && xdotool key ctrl+v"'
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'bash -c "echo -n \",\" | xclip -selection clipboard && xdotool key ctrl+v"'
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'bash -c "echo -n \"?\" | xclip -selection clipboard && xdotool key ctrl+v"'
+```
+
+Попробуйте тест с `sleep 3` - он покажет работает ли метод.
+
+```shellscript
+# Проверить что в буфере обмена
+xclip -selection clipboard -o
+
+# Или альтернативно
+xsel --clipboard --output
+```
+
+```shellscript
+# Откройте текстовый редактор или поле ввода, затем выполните:
+sleep 3 && echo -n "ТЕСТ" | xclip -selection clipboard && xdotool key ctrl+v
+```
+
+```shellscript
+# Настроить все три биндинга через буфер обмена
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'bash -c "echo -n \".\" | xclip -selection clipboard && xdotool key ctrl+v"'
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'bash -c "echo -n \",\" | xclip -selection clipboard && xdotool key ctrl+v"'
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'bash -c "echo -n \"?\" | xclip -selection clipboard && xdotool key ctrl+v"'
+```
+
+---
+
+**User**
+
+После sleep 3 быстро переключитесь в текстовое поле - через 3 секунды должно появиться слово "ТЕСТ".
+
+не появилось, но а буфере при этом было "ТЕСТ". Т.е. xdotool key ctrl+v не сработал
+
+---
+
+**Cursor**
+
+Понятно! Проблема в том, что `xdotool key ctrl+v` не работает в Wayland. Давайте попробуем другие решения:
+
+## Решение 1: keyd (лучший вариант для Wayland)
+```bash
+# Установить keyd
+sudo apt install keyd
+
+# Создать конфигурацию для переназначения клавиш
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+EOF
+
+# Перезапустить keyd
+sudo systemctl restart keyd
+sudo systemctl enable keyd
+
+# Проверить статус
+sudo systemctl status keyd
+```
+
+## Решение 2: Попробовать wl-clipboard (нативно для Wayland)
+```bash
+# Установить wl-clipboard
+sudo apt install wl-clipboard
+
+# Тест
+echo -n "ТЕСТ" | wl-copy
+wl-paste
+
+# Тест эмуляции вставки
+sleep 3 && echo -n "ТЕСТ" | wl-copy && xdotool key shift+Insert
+```
+
+## Решение 3: Попробовать другие комбинации
+```bash
+# Вместо Ctrl+V попробовать Shift+Insert
+sleep 3 && echo -n "ТЕСТ" | xclip -selection clipboard && xdotool key shift+Insert
+
+# Или средней кнопкой мыши
+sleep 3 && echo -n "ТЕСТ" | xclip -selection primary && xdotool click 2
+```
+
+Рекомендую начать с **keyd** (Решение 1) - это системное решение, которое работает на уровне ядра и не зависит от композитора. После установки просто нажмите KP_1, KP_2, KP_3 и они должны выводить точку, запятую и вопросительный знак.
+
+```shellscript
+# Установить keyd
+sudo apt install keyd
+
+# Создать конфигурацию для переназначения клавиш
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+EOF
+
+# Перезапустить keyd
+sudo systemctl restart keyd
+sudo systemctl enable keyd
+
+# Проверить статус
+sudo systemctl status keyd
+```
+
+```shellscript
+# Установить wl-clipboard
+sudo apt install wl-clipboard
+
+# Тест
+echo -n "ТЕСТ" | wl-copy
+wl-paste
+
+# Тест эмуляции вставки
+sleep 3 && echo -n "ТЕСТ" | wl-copy && xdotool key shift+Insert
+```
+
+```shellscript
+# Вместо Ctrl+V попробовать Shift+Insert
+sleep 3 && echo -n "ТЕСТ" | xclip -selection clipboard && xdotool key shift+Insert
+
+# Или средней кнопкой мыши
+sleep 3 && echo -n "ТЕСТ" | xclip -selection primary && xdotool click 2
+```
+
+Отлично! `wl-clipboard` работает. Теперь попробуем эмуляцию вставки:
+
+## Тест эмуляции вставки в Wayland:
+```bash
+# Тест с Shift+Insert
+sleep 3 && echo -n "ТЕСТ_SHIFT" | wl-copy && xdotool key shift+Insert
+
+# Тест с средней кнопкой мыши
+sleep 3 && echo -n "ТЕСТ_MOUSE" | wl-copy && xdotool click 2
+
+# Тест с Ctrl+V (может все же работать)
+sleep 3 && echo -n "ТЕСТ_CTRL" | wl-copy && xdotool key ctrl+v
+```
+
+Попробуйте каждый тест - откройте текстовое поле, выполните команду, быстро переключитесь в поле.
+
+## Если какой-то тест работает, применим к биндингам:
+
+### Если работает Shift+Insert:
+```bash
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'bash -c "echo -n \".\" | wl-copy && xdotool key shift+Insert"'
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'bash -c "echo -n \",\" | wl-copy && xdotool key shift+Insert"'
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'bash -c "echo -n \"?\" | wl-copy && xdotool key shift+Insert"'
+```
+
+### Если работает средняя кнопка мыши:
+```bash
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'bash -c "echo -n \".\" | wl-copy && xdotool click 2"'
+```
+
+## Или все же попробуйте keyd:
+```bash
+sudo apt install keyd
+```
+
+Какой из тестов сработал?
+
+```shellscript
+# Тест с Shift+Insert
+sleep 3 && echo -n "ТЕСТ_SHIFT" | wl-copy && xdotool key shift+Insert
+
+# Тест с средней кнопкой мыши
+sleep 3 && echo -n "ТЕСТ_MOUSE" | wl-copy && xdotool click 2
+
+# Тест с Ctrl+V (может все же работать)
+sleep 3 && echo -n "ТЕСТ_CTRL" | wl-copy && xdotool key ctrl+v
+```
+
+```shellscript
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'bash -c "echo -n \".\" | wl-copy && xdotool key shift+Insert"'
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'bash -c "echo -n \",\" | wl-copy && xdotool key shift+Insert"'
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'bash -c "echo -n \"?\" | wl-copy && xdotool key shift+Insert"'
+```
+
+```shellscript
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'bash -c "echo -n \".\" | wl-copy && xdotool click 2"'
+```
+
+```shellscript
+sudo apt install keyd
+```
+
+---
+
+**User**
+
+не работает
+
+---
+
+**Cursor**
+
+Понятно, xdotool не может эмулировать клавиши в Wayland. Используем **keyd** - это лучшее решение для Wayland:
+
+## Установка и настройка keyd:
+```bash
+# Установить keyd
+sudo apt install keyd
+
+# Создать конфигурацию
+sudo mkdir -p /etc/keyd
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+EOF
+
+# Перезапустить и включить keyd
+sudo systemctl restart keyd
+sudo systemctl enable keyd
+
+# Проверить статус
+sudo systemctl status keyd
+```
+
+## Тест keyd:
+После установки и настройки:
+1. Откройте любое текстовое поле
+2. Нажмите `KP_1` - должна появиться точка `.`
+3. Нажмите `KP_2` - должна появиться запятая `,`
+4. Нажмите `KP_3` - должен появиться вопросительный знак `?`
+
+## Если keyd работает, можно удалить биндинги gsettings:
+```bash
+# Очистить биндинги (они больше не нужны)
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "[]"
+```
+
+## Проверка логов keyd:
+```bash
+# Если не работает, посмотреть логи
+sudo journalctl -u keyd -f
+```
+
+`keyd` работает на уровне ядра и переназначает клавиши до того, как они попадут в Wayland compositor, поэтому должен работать во всех приложениях.
+
+```shellscript
+# Установить keyd
+sudo apt install keyd
+
+# Создать конфигурацию
+sudo mkdir -p /etc/keyd
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+EOF
+
+# Перезапустить и включить keyd
+sudo systemctl restart keyd
+sudo systemctl enable keyd
+
+# Проверить статус
+sudo systemctl status keyd
+```
+
+```shellscript
+# Очистить биндинги (они больше не нужны)
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "[]"
+```
+
+```shellscript
+# Если не работает, посмотреть логи
+sudo journalctl -u keyd -f
+```
+
+---
+
+**User**
+
+keyd работает, но зависит от раскладки клавиатуры, а надо, чтобы не зависил
+
+---
+
+**Cursor**
+
+Отлично! keyd работает, но нужно настроить его так, чтобы он не зависел от раскладки клавиатуры. Есть несколько способов:
+
+## Решение 1: Использовать Unicode коды
+```bash
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = unicode(U+002E)  # точка
+kp2 = unicode(U+002C)  # запятая  
+kp3 = unicode(U+003F)  # вопросительный знак
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Решение 2: Использовать keycode напрямую
+```bash
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = dot
+kp2 = comma
+kp3 = slash+shift  # ? это Shift+/
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Решение 3: Использовать overrides для разных раскладок
+```bash
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = overload(ctrl, .)
+kp2 = overload(ctrl, ,)
+kp3 = overload(ctrl, ?)
+
+[ctrl:layout]
+. = .
+, = ,
+? = ?
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Решение 4: Использовать символы с фиксированной позицией
+```bash
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = period
+kp2 = comma
+kp3 = question
+EOF
+
+sudo systemctl restart keyd
+```
+
+Попробуйте **Решение 1** с Unicode - оно должно работать независимо от раскладки. После перезапуска keyd проверьте на обеих раскладках (English и Russian).
+
+```shellscript
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = unicode(U+002E)  # точка
+kp2 = unicode(U+002C)  # запятая  
+kp3 = unicode(U+003F)  # вопросительный знак
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = dot
+kp2 = comma
+kp3 = slash+shift  # ? это Shift+/
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = overload(ctrl, .)
+kp2 = overload(ctrl, ,)
+kp3 = overload(ctrl, ?)
+
+[ctrl:layout]
+. = .
+, = ,
+? = ?
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = period
+kp2 = comma
+kp3 = question
+EOF
+
+sudo systemctl restart keyd
+```
+
+---
+
+**User**
+
+рабтает только запятая в последнем варианте. Для unicode нужно прописывать прописывтаь ~/.XCompose
+
+## Unicode Support
+
+If keyd encounters a valid UTF8 sequence as a right hand value, it will try and
+translate that sequence into a macro which emits a keyd-specific XKB sequence.
+
+In order for this to work, the sequences defined in the compose file shipped
+with keyd (_/usr/share/keyd/keyd.compose_) must be accessible. This can be achieved
+globally by copying the file to the appropriate location in
+_/usr/share/X11/locale_, or on a per-user basis by symlinking it to
+~/.XCompose.
+
+E.g.
+
+	ln -s /usr/share/keyd/keyd.compose ~/.XCompose
+
+**Additionally you will need to be using the default US layout on your
+display server.** Users of non-english layouts are advised to set their layout
+within keyd (see **Layouts**) to avoid conflicts between the display server
+layout and keyd's unicode functionality.
+
+**Note:** You may have to restart your applications for this to take effect.
+
+**Note 2:** The generated compose sequences are affected by modifiers in the
+normal way. If you want shift to produce a different symbol, you will need to
+define a custom shift layer (see the included layout files for an example).
+
+**Note 3:**
+GTK4 currently has a bug which causes it to crash in the presence of large XCompose files
+(like /usr/share/keyd/keyd.compose).
+
+@https://github.com/rvaiya/keyd/blob/f010d00d8469b90d59911086166e66dceb2dd70f/docs/keyd.scdoc#L600 
+
+---
+
+**Cursor**
+
+Отлично! Теперь понятно. Для Unicode нужно настроить XCompose, а для обычных символов нужно использовать правильные названия. Давайте исправим:
+
+## Решение 1: Настроить Unicode поддержку
+```bash
+# Создать симлинк для XCompose
+ln -s /usr/share/keyd/keyd.compose ~/.XCompose
+
+# Перезапустить приложения для применения XCompose
+# (может потребоваться перелогин)
+
+# Теперь можно использовать Unicode:
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Решение 2: Использовать правильные названия клавиш
+```bash
+# Для символов без Unicode
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = dot
+kp2 = comma  
+kp3 = shift+slash  # ? это Shift+/
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Решение 3: Использовать shift layer для ?
+```bash
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = dot
+kp2 = comma
+kp3 = macro(shift+slash)  # макрос для ?
+
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Проверить файл keyd.compose:
+```bash
+# Проверить существует ли файл
+ls -la /usr/share/keyd/keyd.compose
+
+# Если существует, создать симлинк
+ln -s /usr/share/keyd/keyd.compose ~/.XCompose
+```
+
+Попробуйте **Решение 1** - создайте симлинк XCompose и используйте прямые символы. Согласно [документации keyd](https://github.com/rvaiya/keyd/blob/f010d00d8469b90d59911086166e66dceb2dd70f/docs/keyd.scdoc#L600), это должно работать для UTF-8 символов.
+
+```shellscript
+# Создать симлинк для XCompose
+ln -s /usr/share/keyd/keyd.compose ~/.XCompose
+
+# Перезапустить приложения для применения XCompose
+# (может потребоваться перелогин)
+
+# Теперь можно использовать Unicode:
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+# Для символов без Unicode
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = dot
+kp2 = comma  
+kp3 = shift+slash  # ? это Shift+/
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = dot
+kp2 = comma
+kp3 = macro(shift+slash)  # макрос для ?
+
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+# Проверить существует ли файл
+ls -la /usr/share/keyd/keyd.compose
+
+# Если существует, создать симлинк
+ln -s /usr/share/keyd/keyd.compose ~/.XCompose
+```
+
+Файл `keyd.compose` отсутствует, значит Unicode поддержка не настроена. Попробуем найти правильные названия клавиш:
+
+## Проверим какие символы работают:
+```bash
+# Посмотреть все доступные названия клавиш
+man keyd
+
+# Или попробовать разные варианты для точки:
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = dot
+kp2 = comma
+kp3 = slash
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Попробуем альтернативные названия:
+```bash
+# Вариант 1
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = period
+kp2 = comma
+kp3 = shift+slash
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Если не работает, попробуем raw коды:
+```bash
+# Найти коды клавиш
+showkey --keycodes
+
+# Или через evtest
+sudo apt install evtest
+sudo evtest
+```
+
+## Альтернативное решение - создать macro:
+```bash
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = macro(.)
+kp2 = comma
+kp3 = macro(shift+slash)
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Проверим логи keyd:
+```bash
+# Посмотреть что происходит при нажатии клавиш
+sudo journalctl -u keyd -f
+```
+
+Попробуйте сначала вариант с `macro(.)` и `macro(shift+slash)`. В другом терминале запустите мониторинг логов, чтобы видеть ошибки.
+
+```shellscript
+# Посмотреть все доступные названия клавиш
+man keyd
+
+# Или попробовать разные варианты для точки:
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = dot
+kp2 = comma
+kp3 = slash
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+# Вариант 1
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = period
+kp2 = comma
+kp3 = shift+slash
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+# Найти коды клавиш
+showkey --keycodes
+
+# Или через evtest
+sudo apt install evtest
+sudo evtest
+```
+
+```shellscript
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = macro(.)
+kp2 = comma
+kp3 = macro(shift+slash)
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+# Посмотреть что происходит при нажатии клавиш
+sudo journalctl -u keyd -f
+```
+
+---
+
+**User**
+
+man keyd
+
+как показать тебе это?
+
+---
+
+**Cursor**
+
+Вы можете показать содержимое man-страницы несколькими способами:
+
+## Вывести всю man-страницу в текст:
+```bash
+man keyd | cat
+```
+
+## Или только нужные секции:
+```bash
+# Найти секцию с символами/клавишами
+man keyd | grep -A 20 -B 5 -i "symbol\|key.*name\|period\|dot\|comma"
+
+# Найти секцию с примерами
+man keyd | grep -A 10 -B 5 -i "example"
+
+# Поиск конкретных символов
+man keyd | grep -A 5 -B 5 "\."
+```
+
+## Или сохранить в файл и показать части:
+```bash
+# Сохранить man-страницу в файл
+man keyd > keyd_manual.txt
+
+# Показать первые строки
+head -50 keyd_manual.txt
+
+# Или найти нужную секцию
+grep -n -A 20 -i "symbol\|keyname" keyd_manual.txt
+```
+
+## Быстрый поиск в man:
+```bash
+# Поиск информации о точке/запятой в man
+man keyd | grep -i -C 3 "period\|dot\|punct"
+```
+
+Попробуйте команду `man keyd | grep -A 20 -B 5 -i "symbol\|period\|dot"` - она покажет секции, где упоминаются символы, что нам и нужно.
+
+```shellscript
+man keyd | cat
+```
+
+```shellscript
+# Найти секцию с символами/клавишами
+man keyd | grep -A 20 -B 5 -i "symbol\|key.*name\|period\|dot\|comma"
+
+# Найти секцию с примерами
+man keyd | grep -A 10 -B 5 -i "example"
+
+# Поиск конкретных символов
+man keyd | grep -A 5 -B 5 "\."
+```
+
+```shellscript
+# Сохранить man-страницу в файл
+man keyd > keyd_manual.txt
+
+# Показать первые строки
+head -50 keyd_manual.txt
+
+# Или найти нужную секцию
+grep -n -A 20 -i "symbol\|keyname" keyd_manual.txt
+```
+
+```shellscript
+# Поиск информации о точке/запятой в man
+man keyd | grep -i -C 3 "period\|dot\|punct"
+```
+
+Отлично! Теперь у меня есть полная документация. Давайте используем правильные способы:
+
+## Посмотрим список валидных клавиш:
+```bash
+keyd list-keys | grep -i "period\|dot\|comma\|kp"
+```
+
+## Попробуем прямое присвоение символов (как в Example 2):
+```bash
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Если не работает, попробуем с macro():
+```bash
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = macro(.)
+kp2 = macro(,)
+kp3 = macro(?)
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Альтернативно - через compose (как в Example 5):
+```bash
+# Сначала установим compose key
+setxkbmap -option compose:menu
+
+# Затем используем compose последовательности
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = macro(compose . .)
+kp2 = macro(compose , ,)
+kp3 = macro(compose ? ?)
+EOF
+```
+
+Начните с команды `keyd list-keys | grep -i "kp"` - это покажет правильные названия для numpad клавиш, и затем попробуйте прямое присвоение символов.
+
+```shellscript
+keyd list-keys | grep -i "period\|dot\|comma\|kp"
+```
+
+```shellscript
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = macro(.)
+kp2 = macro(,)
+kp3 = macro(?)
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+# Сначала установим compose key
+setxkbmap -option compose:menu
+
+# Затем используем compose последовательности
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = macro(compose . .)
+kp2 = macro(compose , ,)
+kp3 = macro(compose ? ?)
+EOF
+```
+
+Отлично! Теперь видно правильные названия клавиш. Используем их:
+
+## Правильная конфигурация keyd:
+```bash
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = dot
+kp2 = comma
+kp3 = macro(shift+slash)
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Альтернативный вариант если macro не работает:
+```bash
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = dot
+kp2 = comma
+
+[shift]
+kp3 = slash
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Или попробуем создать отдельный слой для kp3:
+```bash
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = dot
+kp2 = comma
+kp3 = layer(question)
+
+[question]
+kp3 = macro(S-slash)
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Проверим логи keyd для диагностики:
+```bash
+sudo journalctl -u keyd -f
+```
+
+Попробуйте первый вариант с `macro(shift+slash)`. Если не работает, запустите мониторинг логов в другом терминале и посмотрите на ошибки при нажатии клавиш.
+
+```shellscript
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = dot
+kp2 = comma
+kp3 = macro(shift+slash)
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = dot
+kp2 = comma
+
+[shift]
+kp3 = slash
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = dot
+kp2 = comma
+kp3 = layer(question)
+
+[question]
+kp3 = macro(S-slash)
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+sudo journalctl -u keyd -f
+```
+
+---
+
+**User**
+
+macro не рботает одинаково для разных раскладок, нужен именно unicode
+
+---
+
+**Cursor**
+
+Вы правы! Для unicode нужно настроить XCompose. Давайте найдем или создадим keyd.compose:
+
+## Поиск keyd.compose:
+```bash
+# Найти файл keyd.compose в системе
+find /usr -name "keyd.compose" 2>/dev/null
+
+# Или проверить установлены ли дополнительные пакеты keyd
+apt search keyd
+```
+
+## Если файл не найден, создадим свой ~/.XCompose:
+```bash
+# Создать минимальный XCompose для наших символов
+cat > ~/.XCompose << 'EOF'
+include "%L"
+
+<Multi_key> <k> <p> <1> : "."
+<Multi_key> <k> <p> <2> : ","
+<Multi_key> <k> <p> <3> : "?"
+EOF
+```
+
+## Установить US раскладку как основную и использовать unicode в keyd:
+```bash
+# Установить US раскладку в системе
+setxkbmap us
+
+# Конфигурация keyd с прямыми unicode символами
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Альтернативно - попробуем установить keyd из исходников:
+```bash
+# Может быть нужна более новая версия keyd с поддержкой compose
+apt show keyd
+
+# Или установить из git (если нужно)
+# git clone https://github.com/rvaiya/keyd
+# cd keyd && make && sudo make install
+```
+
+## Проверить текущую раскладку:
+```bash
+# Посмотреть текущую раскладку
+setxkbmap -query
+localectl status
+```
+
+Попробуйте сначала создать ~/.XCompose и установить US раскладку, затем используйте прямые unicode символы в keyd.
+
+```shellscript
+# Найти файл keyd.compose в системе
+find /usr -name "keyd.compose" 2>/dev/null
+
+# Или проверить установлены ли дополнительные пакеты keyd
+apt search keyd
+```
+
+```shellscript
+# Создать минимальный XCompose для наших символов
+cat > ~/.XCompose << 'EOF'
+include "%L"
+
+<Multi_key> <k> <p> <1> : "."
+<Multi_key> <k> <p> <2> : ","
+<Multi_key> <k> <p> <3> : "?"
+EOF
+```
+
+```shellscript
+# Установить US раскладку в системе
+setxkbmap us
+
+# Конфигурация keyd с прямыми unicode символами
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+# Может быть нужна более новая версия keyd с поддержкой compose
+apt show keyd
+
+# Или установить из git (если нужно)
+# git clone https://github.com/rvaiya/keyd
+# cd keyd && make && sudo make install
+```
+
+```shellscript
+# Посмотреть текущую раскладку
+setxkbmap -query
+localectl status
+```
+
+Отлично! Файл найден: `/usr/local/share/keyd/keyd.compose`. Теперь правильно настроим Unicode:
+
+## Создадим правильный симлинк на keyd.compose:
+```bash
+# Удалить старый XCompose и создать симлинк на keyd.compose
+rm ~/.XCompose
+ln -s /usr/local/share/keyd/keyd.compose ~/.XCompose
+```
+
+## Перезапустить приложения для применения XCompose:
+```bash
+# Перезапустить keyd
+sudo systemctl restart keyd
+
+# Возможно понадобится перелогин или перезапуск графической сессии
+# Но сначала попробуем без этого
+```
+
+## Проверить работает ли Unicode:
+```bash
+# Открыть текстовое поле и нажать KP_1, KP_2, KP_3
+# Теперь должны работать правильные символы независимо от раскладки
+```
+
+## Если не работает, проверим содержимое keyd.compose:
+```bash
+# Посмотреть что в файле compose
+head -20 /usr/local/share/keyd/keyd.compose
+
+# Проверить что симлинк создался
+ls -la ~/.XCompose
+```
+
+## Альтернативно - добавить явные Unicode коды:
+```bash
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = unicode(U+002E)
+kp2 = unicode(U+002C) 
+kp3 = unicode(U+003F)
+EOF
+
+sudo systemctl restart keyd
+```
+
+Попробуйте сначала создать правильный симлинк на keyd.compose, затем протестируйте клавиши в текстовом поле на разных раскладках.
+
+```shellscript
+# Удалить старый XCompose и создать симлинк на keyd.compose
+rm ~/.XCompose
+ln -s /usr/local/share/keyd/keyd.compose ~/.XCompose
+```
+
+```shellscript
+# Перезапустить keyd
+sudo systemctl restart keyd
+
+# Возможно понадобится перелогин или перезапуск графической сессии
+# Но сначала попробуем без этого
+```
+
+```shellscript
+# Открыть текстовое поле и нажать KP_1, KP_2, KP_3
+# Теперь должны работать правильные символы независимо от раскладки
+```
+
+```shellscript
+# Посмотреть что в файле compose
+head -20 /usr/local/share/keyd/keyd.compose
+
+# Проверить что симлинк создался
+ls -la ~/.XCompose
+```
+
+```shellscript
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = unicode(U+002E)
+kp2 = unicode(U+002C) 
+kp3 = unicode(U+003F)
+EOF
+
+sudo systemctl restart keyd
+```
+
+---
+
+**User**
+
+оно работает, но по разному для разных раскладок us и ru
+
+---
+
+**Cursor**
+
+Да, это ожидаемое поведение. keyd генерирует базовые коды клавиш, а система применяет к ним текущую раскладку. Для исправления нужно:
+
+## Решение 1: Использовать Unicode коды явно
+```bash
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = unicode(U+002E)
+kp2 = unicode(U+002C) 
+kp3 = unicode(U+003F)
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Решение 2: Управлять раскладками через keyd
+```bash
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[global]
+default_layout = main
+
+[main:layout]
+# Основная раскладка остается как есть
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+# Остальные клавиши используют системную раскладку
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Решение 3: Проверить работает ли XCompose
+```bash
+# Проверить содержимое keyd.compose
+grep -A 5 -B 5 "002E\|002C\|003F" /usr/local/share/keyd/keyd.compose
+
+# Перезапустить все приложения (или перелогиниться)
+killall -HUP gnome-shell
+```
+
+## Решение 4: Установить US раскладку как базовую для keyd
+```bash
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[global]
+default_layout = us
+
+[us:layout]
+# Пустой - использует стандартную US раскладку
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+EOF
+
+sudo systemctl restart keyd
+```
+
+Попробуйте **Решение 1** с явными Unicode кодами - это должно работать независимо от системной раскладки.
+
+```shellscript
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = unicode(U+002E)
+kp2 = unicode(U+002C) 
+kp3 = unicode(U+003F)
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[global]
+default_layout = main
+
+[main:layout]
+# Основная раскладка остается как есть
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+# Остальные клавиши используют системную раскладку
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+# Проверить содержимое keyd.compose
+grep -A 5 -B 5 "002E\|002C\|003F" /usr/local/share/keyd/keyd.compose
+
+# Перезапустить все приложения (или перелогиниться)
+killall -HUP gnome-shell
+```
+
+```shellscript
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[global]
+default_layout = us
+
+[us:layout]
+# Пустой - использует стандартную US раскладку
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+EOF
+
+sudo systemctl restart keyd
+```
+
+Похоже Unicode коды не работают. Давайте диагностируем:
+
+## Проверим содержимое keyd.compose:
+```bash
+# Посмотреть размер и содержимое файла
+ls -la /usr/local/share/keyd/keyd.compose
+head -50 /usr/local/share/keyd/keyd.compose
+```
+
+## Проверим логи keyd:
+```bash
+# Посмотреть ошибки keyd
+sudo journalctl -u keyd --no-pager | tail -20
+
+# Запустить мониторинг в реальном времени
+sudo journalctl -u keyd -f
+```
+
+## Альтернативное решение - создать свой XCompose:
+```bash
+# Удалить симлинк и создать свой XCompose
+rm ~/.XCompose
+
+cat > ~/.XCompose << 'EOF'
+include "%L"
+
+# Специальные последовательности для keyd
+<dead_acute> <dead_acute> <k> <p> <1> : "." # точка независимо от раскладки
+<dead_acute> <dead_acute> <k> <p> <2> : "," # запятая независимо от раскладки  
+<dead_acute> <dead_acute> <k> <p> <3> : "?" # вопрос независимо от раскладки
+EOF
+
+# Вернуть простую конфигурацию keyd
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Или попробуем через макросы с compose key:
+```bash
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = macro(rightalt . .)
+kp2 = macro(rightalt , ,)
+kp3 = macro(rightalt ? ?)
+EOF
+
+sudo systemctl restart keyd
+```
+
+Сначала проверьте содержимое keyd.compose и логи keyd, чтобы понять почему Unicode не работает.
+
+```shellscript
+# Посмотреть размер и содержимое файла
+ls -la /usr/local/share/keyd/keyd.compose
+head -50 /usr/local/share/keyd/keyd.compose
+```
+
+```shellscript
+# Посмотреть ошибки keyd
+sudo journalctl -u keyd --no-pager | tail -20
+
+# Запустить мониторинг в реальном времени
+sudo journalctl -u keyd -f
+```
+
+```shellscript
+# Удалить симлинк и создать свой XCompose
+rm ~/.XCompose
+
+cat > ~/.XCompose << 'EOF'
+include "%L"
+
+# Специальные последовательности для keyd
+<dead_acute> <dead_acute> <k> <p> <1> : "." # точка независимо от раскладки
+<dead_acute> <dead_acute> <k> <p> <2> : "," # запятая независимо от раскладки  
+<dead_acute> <dead_acute> <k> <p> <3> : "?" # вопрос независимо от раскладки
+EOF
+
+# Вернуть простую конфигурацию keyd
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = macro(rightalt . .)
+kp2 = macro(rightalt , ,)
+kp3 = macro(rightalt ? ?)
+EOF
+
+sudo systemctl restart keyd
+```
+
+```plaintext
+May 24 14:54:05 NB-5722.corp.yadro.com keyd[146194]:         ERROR: line 6: invalid key or action
+May 24 14:54:05 NB-5722.corp.yadro.com keyd[146194]:         ERROR: line 7: invalid key or action
+```
+
+Вижу ошибки в логах: `ERROR: line 6: invalid key or action` - синтаксис `unicode()` не поддерживается в этой версии keyd.
+
+## Исправим конфигурацию и попробуем другое решение:
+
+```bash
+# Убрать ошибочную конфигурацию
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = dot
+kp2 = comma
+kp3 = macro(shift+slash)
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Альтернативное решение - через layouts в keyd:
+```bash
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[global]
+default_layout = us
+
+[us:layout]
+# Базовая US раскладка для keyd
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+
+# Переключение раскладок системными клавишами остается
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Или создать свой compose файл:
+```bash
+# Создать упрощенный XCompose
+cat > ~/.XCompose << 'EOF'
+# Точка
+<Cancel> <2> <e> : "."
+# Запятая  
+<Cancel> <2> <c> : ","
+# Вопрос
+<Cancel> <3> <f> : "?"
+EOF
+
+# Простая конфигурация keyd с compose ключами
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = macro(cancel 2 e)
+kp2 = macro(cancel 2 c) 
+kp3 = macro(cancel 3 f)
+EOF
+
+sudo systemctl restart keyd
+```
+
+Попробуйте второй вариант с layouts - это должно сделать символы независимыми от системной раскладки.
+
+```shellscript
+# Убрать ошибочную конфигурацию
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = dot
+kp2 = comma
+kp3 = macro(shift+slash)
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[global]
+default_layout = us
+
+[us:layout]
+# Базовая US раскладка для keyd
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+
+# Переключение раскладок системными клавишами остается
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+# Создать упрощенный XCompose
+cat > ~/.XCompose << 'EOF'
+# Точка
+<Cancel> <2> <e> : "."
+# Запятая  
+<Cancel> <2> <c> : ","
+# Вопрос
+<Cancel> <3> <f> : "?"
+EOF
+
+# Простая конфигурация keyd с compose ключами
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = macro(cancel 2 e)
+kp2 = macro(cancel 2 c) 
+kp3 = macro(cancel 3 f)
+EOF
+
+sudo systemctl restart keyd
+```
+
+Проблема с правами доступа. Проверим и исправим:
+
+## Проверим файл ~/.XCompose:
+```bash
+# Проверить что там с файлом
+ls -la ~/.XCompose
+
+# Удалить старый файл/симлинк
+rm -f ~/.XCompose
+
+# Создать новый файл
+cat > ~/.XCompose << 'EOF'
+# Точка
+<Cancel> <2> <e> : "."
+# Запятая  
+<Cancel> <2> <c> : ","
+# Вопрос
+<Cancel> <3> <f> : "?"
+EOF
+```
+
+## Но лучше попробуем решение с layouts:
+```bash
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[global]
+default_layout = us
+
+[us:layout]
+# US layout базовый
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Или совсем простое решение - отключить обработку numpad системой:
+```bash
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+# Переназначить все numpad клавиши на нужные символы
+kp1 = period
+kp2 = comma
+kp3 = shift+slash
+# Остальные numpad клавиши оставить как есть
+kp4 = kp4
+kp5 = kp5
+kp6 = kp6
+kp7 = kp7
+kp8 = kp8  
+kp9 = kp9
+kp0 = kp0
+EOF
+
+sudo systemctl restart keyd
+```
+
+Попробуйте сначала удалить файл `rm -f ~/.XCompose`, затем второй вариант с layouts.
+
+```shellscript
+# Проверить что там с файлом
+ls -la ~/.XCompose
+
+# Удалить старый файл/симлинк
+rm -f ~/.XCompose
+
+# Создать новый файл
+cat > ~/.XCompose << 'EOF'
+# Точка
+<Cancel> <2> <e> : "."
+# Запятая  
+<Cancel> <2> <c> : ","
+# Вопрос
+<Cancel> <3> <f> : "?"
+EOF
+```
+
+```shellscript
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[global]
+default_layout = us
+
+[us:layout]
+# US layout базовый
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+# Переназначить все numpad клавиши на нужные символы
+kp1 = period
+kp2 = comma
+kp3 = shift+slash
+# Остальные numpad клавиши оставить как есть
+kp4 = kp4
+kp5 = kp5
+kp6 = kp6
+kp7 = kp7
+kp8 = kp8  
+kp9 = kp9
+kp0 = kp0
+EOF
+
+sudo systemctl restart keyd
+```
+
+Видно что layout не помогает - символы все еще зависят от раскладки. Попробуем другие подходы:
+
+## Попробуем использовать keyd.compose правильно:
+```bash
+# Вернуть симлинк на keyd.compose
+rm ~/.XCompose
+ln -s /usr/local/share/keyd/keyd.compose ~/.XCompose
+
+# Найти правильные последовательности в keyd.compose
+grep -n "U+002E\|U+002C\|U+003F" /usr/local/share/keyd/keyd.compose
+```
+
+## Попробуем найти как именно нужно задавать символы:
+```bash
+# Поиск точки в compose файле
+grep -C 3 "\." /usr/local/share/keyd/keyd.compose | head -20
+
+# Или поиск по шестнадцатеричным кодам
+grep -C 3 "2e\|2c\|3f" /usr/local/share/keyd/keyd.compose | head -20
+```
+
+## Альтернативное решение - создать макросы с нажатием конкретных клавиш:
+```bash
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+# Используем макросы с точными кодами клавиш
+kp1 = macro(cancel 0 2 e)
+kp2 = macro(cancel 0 2 c) 
+kp3 = macro(cancel 0 3 f)
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Или попробуем через прямые коды из compose:
+```bash
+# Посмотрим какие коды используются для наших символов
+head -200 /usr/local/share/keyd/keyd.compose | grep -A 1 -B 1 '"[.,?]"'
+```
+
+Сначала поищем правильные последовательности в keyd.compose файле.
+
+```shellscript
+# Вернуть симлинк на keyd.compose
+rm ~/.XCompose
+ln -s /usr/local/share/keyd/keyd.compose ~/.XCompose
+
+# Найти правильные последовательности в keyd.compose
+grep -n "U+002E\|U+002C\|U+003F" /usr/local/share/keyd/keyd.compose
+```
+
+```shellscript
+# Поиск точки в compose файле
+grep -C 3 "\." /usr/local/share/keyd/keyd.compose | head -20
+
+# Или поиск по шестнадцатеричным кодам
+grep -C 3 "2e\|2c\|3f" /usr/local/share/keyd/keyd.compose | head -20
+```
+
+```shellscript
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+# Используем макросы с точными кодами клавиш
+kp1 = macro(cancel 0 2 e)
+kp2 = macro(cancel 0 2 c) 
+kp3 = macro(cancel 0 3 f)
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+# Посмотрим какие коды используются для наших символов
+head -200 /usr/local/share/keyd/keyd.compose | grep -A 1 -B 1 '"[.,?]"'
+```
+
+Похоже, что keyd.compose использует другой формат кодирования. Давайте попробуем найти другим способом:
+
+## Поиск символов в compose файле:
+```bash
+# Поиск точки, запятой и вопроса по-разному
+grep -C 2 '"\."' /usr/local/share/keyd/keyd.compose | head -10
+grep -C 2 '","' /usr/local/share/keyd/keyd.compose | head -10
+grep -C 2 '"?"' /usr/local/share/keyd/keyd.compose | head -10
+
+# Поиск по ASCII кодам (46=точка, 44=запятая, 63=?)
+printf "\x2e\x2c\x3f"
+```
+
+## Альтернативное решение - через escape последовательности:
+```bash
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+# Используем прямые escape последовательности
+kp1 = "\x2e"
+kp2 = "\x2c" 
+kp3 = "\x3f"
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Или попробуем через прямые байты в keyd:
+```bash
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = macro(cancel 0 2 e)
+kp2 = macro(cancel 0 2 c)
+kp3 = macro(cancel 0 3 f)
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Проверим общий размер и формат compose файла:
+```bash
+# Размер файла
+wc -l /usr/local/share/keyd/keyd.compose
+
+# Пример записей
+sed -n '1000,1020p' /usr/local/share/keyd/keyd.compose
+```
+
+Попробуйте сначала поиск символов в кавычках, чтобы понять формат файла.
+
+```shellscript
+# Поиск точки, запятой и вопроса по-разному
+grep -C 2 '"\."' /usr/local/share/keyd/keyd.compose | head -10
+grep -C 2 '","' /usr/local/share/keyd/keyd.compose | head -10
+grep -C 2 '"?"' /usr/local/share/keyd/keyd.compose | head -10
+
+# Поиск по ASCII кодам (46=точка, 44=запятая, 63=?)
+printf "\x2e\x2c\x3f"
+```
+
+```shellscript
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+# Используем прямые escape последовательности
+kp1 = "\x2e"
+kp2 = "\x2c" 
+kp3 = "\x3f"
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = macro(cancel 0 2 e)
+kp2 = macro(cancel 0 2 c)
+kp3 = macro(cancel 0 3 f)
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+# Размер файла
+wc -l /usr/local/share/keyd/keyd.compose
+
+# Пример записей
+sed -n '1000,1020p' /usr/local/share/keyd/keyd.compose
+```
+
+```plaintext
+<Cancel> <0> <0> <0> : ""
+<Cancel> <0> <0> <1> : ""
+...
+<Cancel> <0> <0> <x> : "¡"
+<Cancel> <0> <0> <y> : "¢"
+<Cancel> <0> <0> <z> : "£"
+```
+
+Видно, что символы не найдены в прямом виде. Попробуем другие подходы:
+
+## Посмотрим больше содержимого файла:
+```bash
+# Посмотреть строки где могут быть наши символы
+sed -n '2000,2100p' /usr/local/share/keyd/keyd.compose
+sed -n '5000,5100p' /usr/local/share/keyd/keyd.compose
+
+# Общее количество строк
+wc -l /usr/local/share/keyd/keyd.compose
+```
+
+## Попробуем прямые escape последовательности:
+```bash
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = "\x2e"
+kp2 = "\x2c" 
+kp3 = "\x3f"
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Если не работает, попробуем самое простое решение:
+```bash
+# Возможно compose файл вообще не нужен для простых символов
+rm ~/.XCompose
+
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+EOF
+
+sudo systemctl restart keyd
+
+# И просто переключаться раскладку только когда нужно
+```
+
+## Или финальное решение - создать слои для разных раскладок:
+```bash
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+
+# Добавить переключатель если нужно
+capslock = toggle(russian)
+
+[russian]
+# В русской раскладке те же символы
+kp1 = .
+kp2 = ,
+kp3 = ?
+EOF
+
+sudo systemctl restart keyd
+```
+
+Попробуйте escape последовательности, а если не сработает - простое решение без compose.
+
+```shellscript
+# Посмотреть строки где могут быть наши символы
+sed -n '2000,2100p' /usr/local/share/keyd/keyd.compose
+sed -n '5000,5100p' /usr/local/share/keyd/keyd.compose
+
+# Общее количество строк
+wc -l /usr/local/share/keyd/keyd.compose
+```
+
+```shellscript
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = "\x2e"
+kp2 = "\x2c" 
+kp3 = "\x3f"
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+# Возможно compose файл вообще не нужен для простых символов
+rm ~/.XCompose
+
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+EOF
+
+sudo systemctl restart keyd
+
+# И просто переключаться раскладку только когда нужно
+```
+
+```shellscript
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = .
+kp2 = ,
+kp3 = ?
+
+# Добавить переключатель если нужно
+capslock = toggle(russian)
+
+[russian]
+# В русской раскладке те же символы
+kp1 = .
+kp2 = ,
+kp3 = ?
+EOF
+
+sudo systemctl restart keyd
+```
+
+Теперь понятно - это большой файл кодировки Unicode. Поищем наши символы в начале файла, где должны быть простые ASCII символы:
+
+## Поиск ASCII символов в начале файла:
+```bash
+# Посмотреть начало файла, где ASCII символы
+head -100 /usr/local/share/keyd/keyd.compose
+
+# Поиск строк с десятичными кодами наших символов
+# Точка = 46 decimal = 2e hex
+# Запятая = 44 decimal = 2c hex  
+# Вопрос = 63 decimal = 3f hex
+
+grep -n "2e>" /usr/local/share/keyd/keyd.compose | head -5
+grep -n "2c>" /usr/local/share/keyd/keyd.compose | head -5
+grep -n "3f>" /usr/local/share/keyd/keyd.compose | head -5
+```
+
+## Или поищем по шаблону с двузначными hex кодами:
+```bash
+# Поиск с точным форматом
+sed -n '1,1000p' /usr/local/share/keyd/keyd.compose | grep -C 2 "2e\|2c\|3f"
+```
+
+## Попробуем найти правильную кодировку:
+```bash
+# Поиск точки в первых 500 строках
+sed -n '1,500p' /usr/local/share/keyd/keyd.compose | grep -n "\."
+
+# Поиск запятой
+sed -n '1,500p' /usr/local/share/keyd/keyd.compose | grep -n ","
+```
+
+## Альтернативно - создадим свои коды на основе существующих:
+```bash
+# Найти свободные коды в compose
+echo 'Создаем собственные коды:'
+cat >> ~/.XCompose << 'EOF'
+
+# Наши коды для keyd
+<Cancel> <9> <9> <1> : "."
+<Cancel> <9> <9> <2> : ","
+<Cancel> <9> <9> <3> : "?"
+EOF
+
+# Использовать их в keyd
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = macro(cancel 9 9 1)
+kp2 = macro(cancel 9 9 2)
+kp3 = macro(cancel 9 9 3)
+EOF
+
+sudo systemctl restart keyd
+```
+
+Попробуйте последний вариант - создание собственных кодов в XCompose.
+
+```shellscript
+# Посмотреть начало файла, где ASCII символы
+head -100 /usr/local/share/keyd/keyd.compose
+
+# Поиск строк с десятичными кодами наших символов
+# Точка = 46 decimal = 2e hex
+# Запятая = 44 decimal = 2c hex  
+# Вопрос = 63 decimal = 3f hex
+
+grep -n "2e>" /usr/local/share/keyd/keyd.compose | head -5
+grep -n "2c>" /usr/local/share/keyd/keyd.compose | head -5
+grep -n "3f>" /usr/local/share/keyd/keyd.compose | head -5
+```
+
+```shellscript
+# Поиск с точным форматом
+sed -n '1,1000p' /usr/local/share/keyd/keyd.compose | grep -C 2 "2e\|2c\|3f"
+```
+
+```shellscript
+# Поиск точки в первых 500 строках
+sed -n '1,500p' /usr/local/share/keyd/keyd.compose | grep -n "\."
+
+# Поиск запятой
+sed -n '1,500p' /usr/local/share/keyd/keyd.compose | grep -n ","
+```
+
+```shellscript
+# Найти свободные коды в compose
+echo 'Создаем собственные коды:'
+cat >> ~/.XCompose << 'EOF'
+
+# Наши коды для keyd
+<Cancel> <9> <9> <1> : "."
+<Cancel> <9> <9> <2> : ","
+<Cancel> <9> <9> <3> : "?"
+EOF
+
+# Использовать их в keyd
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = macro(cancel 9 9 1)
+kp2 = macro(cancel 9 9 2)
+kp3 = macro(cancel 9 9 3)
+EOF
+
+sudo systemctl restart keyd
+```
+
+Видно что коды не работают как ожидалось. Давайте попробуем более простые решения:
+
+## Проверим работает ли XCompose вообще:
+```bash
+# Проверить XCompose
+cat ~/.XCompose
+
+# Перезапустить все приложения для применения XCompose
+killall -HUP gnome-shell 2>/dev/null || true
+# Или попробовать перелогиниться
+```
+
+## Простое решение без Unicode - управлять раскладкой:
+```bash
+# Удалить проблемный XCompose
+rm ~/.XCompose
+
+# Простая конфигурация keyd
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = dot
+kp2 = comma  
+kp3 = shift+slash
+
+# Добавить переключение раскладки на удобную клавишу
+rightalt = toggle(ru_mode)
+
+[ru_mode]
+# В русском режиме те же символы
+kp1 = dot
+kp2 = comma
+kp3 = shift+slash
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Или финальное решение - использовать готовое решение:
+```bash
+# Установить и настроить ibus для управления раскладками
+sudo apt install ibus ibus-m17n
+
+# Простая конфигурация keyd без Unicode
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+# Простые привязки без Unicode
+kp1 = period
+kp2 = comma
+kp3 = question
+EOF
+
+sudo systemctl restart keyd
+```
+
+## Проверить можем ли мы использовать прямые клавиши:
+```bash
+# Посмотреть доступные ключи еще раз
+keyd list-keys | grep -E "(period|comma|question)"
+```
+
+Попробуйте последний вариант с `
+
+```shellscript
+# Проверить XCompose
+cat ~/.XCompose
+
+# Перезапустить все приложения для применения XCompose
+killall -HUP gnome-shell 2>/dev/null || true
+# Или попробовать перелогиниться
+```
+
+```shellscript
+# Удалить проблемный XCompose
+rm ~/.XCompose
+
+# Простая конфигурация keyd
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+kp1 = dot
+kp2 = comma  
+kp3 = shift+slash
+
+# Добавить переключение раскладки на удобную клавишу
+rightalt = toggle(ru_mode)
+
+[ru_mode]
+# В русском режиме те же символы
+kp1 = dot
+kp2 = comma
+kp3 = shift+slash
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+# Установить и настроить ibus для управления раскладками
+sudo apt install ibus ibus-m17n
+
+# Простая конфигурация keyd без Unicode
+sudo tee /etc/keyd/default.conf << 'EOF'
+[ids]
+*
+
+[main]
+# Простые привязки без Unicode
+kp1 = period
+kp2 = comma
+kp3 = question
+EOF
+
+sudo systemctl restart keyd
+```
+
+```shellscript
+# Посмотреть доступные ключи еще раз
+keyd list-keys | grep -E "(period|comma|question)"
+```
+
+---
+
+**User**
+
+вай! перезагрузка помогла! но надо было опять сделать sudo systemctl restart keyd
+
+---
+
+**Cursor**
+
+Отлично! 🎉 Перезагрузка помогла применить XCompose настройки. Теперь давайте убедимся что все работает правильно и настроим автозапуск:
+
+## Проверим что все клавиши работают:
+```bash
+# Протестируйте в текстовом поле на обеих раскладках (US и RU):
+# KP_1 должен выводить точку "."
+# KP_2 должен выводить запятую ","  
+# KP_3 должен выводить вопрос "?"
+```
+
+## Настроим автозапуск keyd:
+```bash
+# Убедиться что keyd запускается автоматически
+sudo systemctl enable keyd
+sudo systemctl status keyd
+```
+
+## Проверим текущую конфигурацию:
+```bash
+# Посмотреть что у нас сейчас в конфигурации
+cat /etc/keyd/default.conf
+
+# Посмотреть наш XCompose  
+cat ~/.XCompose
+```
+
+## Если нужно добавить еще символы:
+```bash
+# Можно добавить еще символы в XCompose по тому же принципу
+cat >> ~/.XCompose << 'EOF'
+
+# Дополнительные символы если нужно
+<Cancel> <9> <9> <4> : "!"
+<Cancel> <9> <9> <5> : ";"
+EOF
+
+# И настроить их в keyd
+# kp4 = macro(cancel 9 9 4)
+# kp5 = macro(cancel 9 9 5)
+```
+
+Теперь ваши настройки должны работать независимо от раскладки клавиатуры! Главное было - перезагрузка для применения XCompose файла.
+
+```shellscript
+# Протестируйте в текстовом поле на обеих раскладках (US и RU):
+# KP_1 должен выводить точку "."
+# KP_2 должен выводить запятую ","  
+# KP_3 должен выводить вопрос "?"
+```
+
+```shellscript
+# Убедиться что keyd запускается автоматически
+sudo systemctl enable keyd
+sudo systemctl status keyd
+```
+
+```shellscript
+# Посмотреть что у нас сейчас в конфигурации
+cat /etc/keyd/default.conf
+
+# Посмотреть наш XCompose  
+cat ~/.XCompose
+```
+
+```shellscript
+# Можно добавить еще символы в XCompose по тому же принципу
+cat >> ~/.XCompose << 'EOF'
+
+# Дополнительные символы если нужно
+<Cancel> <9> <9> <4> : "!"
+<Cancel> <9> <9> <5> : ";"
+EOF
+
+# И настроить их в keyd
+# kp4 = macro(cancel 9 9 4)
+# kp5 = macro(cancel 9 9 5)
+```
+
