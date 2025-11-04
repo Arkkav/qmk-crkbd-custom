@@ -12,3 +12,6 @@ DEBUG_MATRIX_SCAN_RATE = yes
 
 # Required for SEND_STRING
 EXTRAKEY_ENABLE = yes
+
+# Tap Dance feature
+TAP_DANCE_ENABLE = yes
