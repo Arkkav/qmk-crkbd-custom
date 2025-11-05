@@ -30,6 +30,8 @@ enum {
     TD_Q_F23,     // KC_Q двойное нажатие -> KC_F23
     TD_G_P1,      // KC_G двойное нажатие -> KC_P1
     TD_B_P2,      // KC_B двойное нажатие -> KC_P2
+    TD_MO1_P1,    // MO(1) одинарное -> активирует слой 1, двойное -> KC_P1
+    TD_MO2_P2,    // MO(2) одинарное -> активирует слой 2, двойное -> KC_P2
 };
 
 // Tap Dance definitions
@@ -44,18 +46,20 @@ tap_dance_action_t tap_dance_actions[] = {
     [TD_Q_F23] = ACTION_TAP_DANCE_DOUBLE(KC_Q, KC_F23),
     [TD_G_P1] = ACTION_TAP_DANCE_DOUBLE(KC_G, KC_P1),
     [TD_B_P2] = ACTION_TAP_DANCE_DOUBLE(KC_B, KC_P2),
+    [TD_MO1_P1] = ACTION_TAP_DANCE_DOUBLE(MO(1), KC_P1),  // одинарное: MO(1), двойное: KC_P1
+    [TD_MO2_P2] = ACTION_TAP_DANCE_DOUBLE(MO(2), KC_P2),  // одинарное: MO(2), двойное: KC_P2
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-  LGUI_T(KC_ESC), TD(TD_Q_F23), TD(TD_W_F21), TD(TD_E_F19), TD(TD_R_PAREN),    KC_T,                         KC_Y,    TD(TD_U_PAREN),    TD(TD_I_F20),    TD(TD_O_F22),   TD(TD_P_F24),  KC_LBRC,
+  LGUI_T(KC_ESC), KC_Q,   KC_W,   KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_LBRC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-  LALT_T(KC_TAB), KC_A, KC_S,    KC_D,    KC_F,    TD(TD_G_P1),                         KC_H,    KC_J,    KC_K,    KC_L,   KC_SCLN, KC_RBRC,
+  LALT_T(KC_TAB), KC_A, KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L,   KC_SCLN, KC_RBRC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    TD(TD_B_P2),                         KC_N,    KC_M, KC_COMM,  KC_DOT,  KC_QUOT,  KC_RSFT,
+      KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT,  KC_QUOT,  KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LCTL,   MO(1),  KC_ENT,     KC_SPC,   MO(2), KC_BSPC
+                                          KC_LCTL,   TD(TD_MO1_P1),  KC_ENT,     KC_SPC,   TD(TD_MO2_P2), KC_BSPC
                                       //`--------------------------'  `--------------------------'
 
   ),
