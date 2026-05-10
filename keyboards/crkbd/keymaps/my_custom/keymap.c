@@ -54,9 +54,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Corne v4.1: LAYOUT_split_3x6_3_ex2 — две внутренние клавиши на половинке (после T/G и перед Y/H на схеме QMK). */
     [0] = LAYOUT_split_3x6_3_ex2(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-  LGUI_T(KC_ESC), KC_Q,   KC_W,   KC_E,    KC_R,    KC_T,    KC_PGUP,          KC_HOME, KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_LBRC,
+  LGUI_T(KC_ESC), KC_Q,   KC_W,   KC_E,    KC_R,    KC_T,    LSFT(KC_9),          LSFT(KC_0), KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_LBRC,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-  LALT_T(KC_TAB), KC_A, KC_S,    KC_D,    KC_F,    KC_G,    KC_PGDN,          KC_END,  KC_H,    KC_J,    KC_K,    KC_L,   KC_SCLN, KC_RBRC,
+  LALT_T(KC_TAB), KC_A, KC_S,    KC_D,    KC_F,    KC_G,    KC_F19,          KC_F20,  KC_H,    KC_J,    KC_K,    KC_L,   KC_SCLN, KC_RBRC,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
       KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT,  KC_QUOT,  KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -67,9 +67,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [1] = LAYOUT_split_3x6_3_ex2(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-    KC_DEL,    KC_F1,  KC_F2,   KC_F3,  KC_F4,   KC_GRV,  _______,          _______, KC_MINUS,   KC_7,   KC_8,    KC_9,   KC_EQUAL, KC_KP_SLASH,
+    KC_DEL,    KC_F1,  KC_F2,   KC_F3,  KC_F4,   KC_GRV,  _______,          KC_F22, KC_MINUS,   KC_7,   KC_8,    KC_9,   KC_EQUAL, KC_KP_SLASH,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-    KC_LALT,  KC_F5,    KC_F6,   KC_F7,   KC_F8, LSFT(KC_MINUS), _______,   _______, KC_F18, KC_4,  KC_5,     KC_6,    KC_0, KC_P5,
+    KC_LALT,  KC_F5,    KC_F6,   KC_F7,   KC_F8, LSFT(KC_MINUS), _______,   KC_F24, KC_F18, KC_4,  KC_5,     KC_6,    KC_0, KC_P5,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
     KC_LSFT,  KC_F9,  KC_F10,   KC_F11, KC_F12,  LALT(KC_LSFT),                LSFT(KC_1),    KC_1,  KC_2,     KC_3,   KC_PLUS,   KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -79,9 +79,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [2] = LAYOUT_split_3x6_3_ex2(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-     KC_BACKSLASH, KC_EQUAL, KC_F13, KC_F16, LSFT(KC_8), KC_P3, _______,   _______, KC_HOME,   KC_END,  KC_UP,   XXXXXXX, XXXXXXX, KC_PSCR,
+     KC_BACKSLASH, KC_EQUAL, KC_F13, KC_F16, LSFT(KC_8), KC_P3, KC_F21,   _______, KC_HOME,   KC_END,  KC_UP,   XXXXXXX, XXXXXXX, KC_PSCR,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LALT, KC_P4,   KC_F15,  KC_P6, KC_F14,  KC_P1,    _______,          _______, KC_PAGE_UP,  KC_LEFT, KC_DOWN, KC_RIGHT, XXXXXXX, KC_INS,
+      KC_LALT, KC_P4,   KC_F15,  KC_P6, KC_F14,  KC_P1,    KC_F23,          _______, KC_PAGE_UP,  KC_LEFT, KC_DOWN, KC_RIGHT, XXXXXXX, KC_INS,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT, KC_P7, LSFT(KC_5), KC_P8, KC_F17,  KC_P2,                   KC_PAGE_DOWN, KC_P1, KC_P2, KC_P3, XXXXXXX, KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
