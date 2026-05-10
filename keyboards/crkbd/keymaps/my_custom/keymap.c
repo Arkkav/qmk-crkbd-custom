@@ -90,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [3] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      QK_BOOT, KC_F23, KC_F21, KC_F19, LSFT(KC_9), XXXXXXX,                      XXXXXXX, LSFT(KC_0), KC_F20, KC_F22, KC_F24, XXXXXXX,
+      QK_BOOT, XXXXXXX, KC_F23, KC_F21, KC_F19, LSFT(KC_9),                      LSFT(KC_0), KC_F20, KC_F22, KC_F24, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       RM_TOGG, RM_HUEU, RM_SATU, RM_VALU, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
